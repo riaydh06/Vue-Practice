@@ -1,0 +1,259 @@
+<template>
+    <v-ons-page id="gray_bg">
+        <v-header @gomenupage="menupage"></v-header>
+        <div v-if="loading" class="loading" v-cloak>
+            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            <!--<span>Loading...</span>-->
+        </div>
+
+
+        <div v-show="pageloading">
+            <div class="background_white" id="bg-restaurant">
+                <ons-row align="left">
+                    <ons-col width="80%">
+                        <div class="vapianos_left_side_heading">
+                            <h2 v-html="rest.post_title"></h2>
+                            <p>All you need to know</p>
+                        </div>
+                    </ons-col>
+                    <ons-col width="20%">
+                        <div class="vapianos_cross_icon">
+                            <!--  <i class="fa fa-times-circle-o" aria-hidden="true"></i> -->
+                            <img @click="pop" :src="this.assets.icons.close" alt="close" />
+                        </div>
+                    </ons-col>
+                </ons-row>
+
+            </div>
+            <div class="vapianos_order_load_wallet">
+                <ons-row align="left">
+                    <ons-col width="70%">
+                        <div class="vapianos_left_side_wallet">
+                            <ons-row>
+                                <ons-col width="50%">
+                                    <div class="load_wallet">
+                                        <strong>Load on wallet</strong>
+                                    </div>
+                                    <div class="wallet_progressr">
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__primary" style="width: 60%"></div>
+
+                                        </div>
+                                    </div>
+                                </ons-col>
+                                <ons-col width="50%">
+                                    <div class="cusine_type">
+                                        <strong>Cuisine Type</strong>
+                                        <p  class="cuisine" v-for="item in rest.cuisine_type" >
+                                            {{ item.name }}
+                                        </p>
+                                    </div>
+                                </ons-col>
+                            </ons-row>
+                            <ons-row>
+                                <ons-col width="100%">
+                                    <div class="vapianos_address">
+                                        <strong>Address</strong>
+                                        <p>{{rest.restaurant_address}}</p>
+                                    </div>
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                    </ons-col>
+                    <ons-col align="right" width="30%">
+                        <div class="vapianos_right_side_rating">
+                            <div class="card">
+                                <div class="card__content card_text">
+                                    <span>{{ rest.restaurant_rating}}</span>
+                                    <p>Rating</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reserv_button">
+                            <button class="button button--light reserv_modified" @click="reservedpage(rest.ID,rest.post_title,rest.restaurant_minimum)">Reserve</button>
+                        </div>
+                    </ons-col>
+                </ons-row>
+
+            </div>
+            <div class="vapianos_menu_button">
+                <ons-row align="left">
+                    <ons-col width="25%">
+
+                    </ons-col>
+                    <ons-col width="50%">
+                        <div class="vapianos_menu_button_text">
+                            <button class="button button--light" @click="foodmenupage(rest.ID,rest.post_title)">Menu</button>
+                        </div>
+                    </ons-col>
+                    <ons-col width="25%">
+
+                    </ons-col>
+                </ons-row>
+            </div>
+            <div class="menu_bottom_item">
+                <ons-row align="left" class="margin-left">
+                    <ons-col width="50%">
+                        <ons-row align="left" class="vapianos_icon_row">
+                            <div class="icon">
+                                <img :src="this.assets.icons.phonecall" alt="" />
+                            </div>
+                            <div class="icon_text">
+                                <strong>Phone</strong>
+                                <p>{{rest.contact_number}}</p>
+                            </div>
+                        </ons-row>
+                        <ons-row align="left" class="vapianos_icon_row">
+                            <div class="icon">
+                                <img :src="this.assets.icons.payment" alt="" />
+                            </div>
+                            <div class="icon_text">
+                                <strong>Price</strong>
+                                <p class="price_uppercase">{{rest.price_range}}</p>
+                            </div>
+                        </ons-row>
+                        <ons-row align="left" class="vapianos_icon_row">
+                            <div class="icon">
+                                <img :src="this.assets.icons.menu" alt="" />
+                            </div>
+                            <div class="icon_text">
+                                <strong>Cuisine</strong>
+                                <p  class="cuisine" v-for="item in rest.cuisine_type" >
+                                    {{ item.name }}
+                                </p>
+                            </div>
+                        </ons-row>
+                        <ons-row align="left" class="vapianos_icon_row">
+                            <div class="icon">
+                                <img :src="this.assets.icons.alarmclock" alt="" />
+                            </div>
+                            <div class="icon_text">
+                                <strong>Hours</strong>
+                                <p class="hours_capitalize">{{rest.restaurant_hours}}</p>
+                            </div>
+                        </ons-row>
+                        <ons-row align="left" class="vapianos_icon_row">
+                            <div class="icon">
+                                <img :src="this.assets.icons.parking" alt="" />
+                            </div>
+                            <div class="icon_text">
+                                <strong>Parking</strong>
+                                <p class="parking_capitalize">{{rest.parking}}</p>
+                            </div>
+                        </ons-row>
+                        <ons-row align="left" class="vapianos_icon_row">
+                            <div class="icon">
+                                <img :src="this.assets.icons.tie" alt="" />
+                            </div>
+                            <div class="icon_text">
+                                <strong>Dresscode</strong>
+                                <p class="parking_dresscode">{{rest.dress_code}}</p>
+                            </div>
+                        </ons-row>
+                    </ons-col>
+                    <ons-col width="50%">
+                        <ons-row class="vapianos_icon_right_des">
+                            <div class="icon">
+                                <img :src="this.assets.icons.book" alt="" />
+                            </div>
+                            <div class="icon_text another_icon_text">
+                                <strong>Description</strong>
+                                <p v-html="rest.post_content"></p>
+
+                            </div>
+                        </ons-row>
+                    </ons-col>
+                </ons-row>
+            </div>
+        </div>
+
+
+
+
+    </v-ons-page>
+</template>
+
+<script>
+    import header from "./header"
+    import {assets} from './config'
+    import axios from 'axios'
+    import cuisine from './cuisine'
+    import reserved from './reserved'
+    import menus from './menu'
+    import foodmenu from './foodmenu'
+    export default {
+        name: 'restaurant',
+        data () {
+            return {
+                rest: {},
+                loading: false,
+                pageloading: false
+            }
+        },
+        mixins:[assets],
+        created () {
+            this.fetchData()
+        },
+        watch: {
+            '$route': 'fetchData'
+        },
+        methods: {
+            fetchData () {
+                this.loading = true
+                axios.get( this.base_url + '/Table-cartel/v1/get-single-rest/' + this.data.id + '/')
+                    .then((resp) => {
+                        this.rest = resp.data
+//                        console.log('--------------------------------')
+//                        console.log(resp.data)
+                        this.loading = false
+                        this.pageloading = true
+                    })
+                    .catch((err) => {
+//                        console.log(err)
+                    })
+            },
+            reservedpage (id,name,headcount) {
+//                this.pageStack.push(reserved)
+                this.pageStack.push({
+                    extends: reserved,
+                    data() {
+                        return {
+                            data: {'id': id,'name':name,'headcount': headcount}
+                        }
+                    }
+                });
+            },
+            foodmenupage(id,name) {
+                this.pageStack.push({
+                    extends: foodmenu,
+                    data() {
+                        return {
+                            data: {'id': id,'name':name}
+                        }
+                    }
+                })
+            },
+            pop() {
+                this.pageStack.pop();
+            },
+            menupage (){
+                this.pageStack.push(menus)
+            },
+        },
+        components:{
+            'v-header':header,
+        },
+        props: ['pageStack']
+    }
+</script>
+<style scoped>
+    .button{
+        float:left;
+    }
+    .loading{
+        text-align: center;
+        margin-top: 300px;
+        color: #009688;
+        font-size: 13px;
+    }
+</style>

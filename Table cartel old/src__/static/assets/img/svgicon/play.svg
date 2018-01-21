@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="402 263 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="group-35" transform="translate(401.999 262.999)">
+    <g id="_x33_56._Play_1_" transform="translate(0.001 0.001)">
+      <g id="group" transform="translate(0)">
+        <path id="path" class="cls-1" d="M22.39,6A12,12,0,1,0,18,22.394,11.995,11.995,0,0,0,22.39,6ZM16.8,20.315A9.6,9.6,0,1,1,20.312,7.2,9.6,9.6,0,0,1,16.8,20.315Zm-.474-8.8L10.042,7.858c-.573-.336-1.032-.069-1.032.6l.031,7.276c0,.665.474.932,1.047.6l6.235-3.6A.647.647,0,0,0,16.323,11.518Z" transform="translate(-0.001 -0.001)"/>
+      </g>
+    </g>
+  </g>
+</svg>

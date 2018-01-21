@@ -1,0 +1,23 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-facebook4": {
+      "APP_ID": "208052816401741",
+      "APP_NAME": "TableCartelApp",
+      "PACKAGE_NAME": "com.tablecartelapp.app"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.tablecartelapp.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.tablecartelapp.app"
+    }
+  },
+  "dependent_plugins": {}
+}
