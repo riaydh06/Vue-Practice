@@ -4,6 +4,8 @@ import Aligncontent from '@/components/Align-content'
 import Alignitem from '@/components/Align-item'
 import Alignself from '@/components/Align-self'
 import Home from '@/components/Home'
+import All from '@/components/All'
+import Animation from '@/components/Animation'
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/Alignself',
       name: 'Alignself',
       component: Alignself
+    },
+    {
+      path: '/All',
+      name: 'All',
+      component: All
+    },
+    {
+      path: '/Animation',
+      name: 'Animation',
+      component: Animation
     }
   ],
   mode: 'history'
